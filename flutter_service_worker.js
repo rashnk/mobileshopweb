@@ -2,6 +2,7 @@
 const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
+const UPDATE_CHECK_INTERVAL = 30000; // Check for updates every 30 seconds
 
 const RESOURCES = {"assets/AssetManifest.bin": "2831867d5c9a61ce99cbed8421d4b786",
 "assets/AssetManifest.bin.json": "e15a6bf18e6e485cb2950526380249ee",
@@ -38,6 +39,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "2831867d5c9a61ce99cbed8421d4b786
 "main.dart.wasm": "eafe52f02c62e83d0da03fd0cce89da0",
 "main.dart.wasm.map": "c592ceedcd2ca800f338f3264028cfc5",
 "manifest.json": "1a3892ad063c75666ac86f702c303085",
+"update_notification.js": "a1b2c3d4e5f6789012345678901234567890abcd",
 "version.json": "66b4fe090ab4823e408ce15b42c4b7c0"};
 // The application shell files that are downloaded before a service worker can
 // start.
@@ -48,6 +50,109 @@ const CORE = ["main.dart.js",
 "flutter_bootstrap.js",
 "assets/AssetManifest.bin.json",
 "assets/FontManifest.json"];
+
+// Check for updates periodically and notify clients
+let updateCheckTimer;
+
+function startUpdateChecker() {
+  if (updateCheckTimer) {
+    clearInterval(updateCheckTimer);
+  }
+  
+  updateCheckTimer = setInterval(async () => {
+    try {
+      await checkForUpdates();
+    } catch (error) {
+      console.error('Update check failed:', error);
+    }
+  }, UPDATE_CHECK_INTERVAL);
+}
+
+async function checkForUpdates() {
+  try {
+    // Fetch the latest version.json with cache-busting
+    const versionResponse = await fetch('/version.json?_=' + Date.now(), {
+      cache: 'no-cache'
+    });
+    
+    if (!versionResponse.ok) {
+      return;
+    }
+    
+    const latestVersion = await versionResponse.json();
+    
+    // Get the cached version
+    const contentCache = await caches.open(CACHE_NAME);
+    const cachedVersionResponse = await contentCache.match('/version.json');
+    
+    if (cachedVersionResponse) {
+      const cachedVersion = await cachedVersionResponse.json();
+      
+      // Compare versions (build number or version string)
+      const isNewVersion = (
+        latestVersion.build_number !== cachedVersion.build_number ||
+        latestVersion.version !== cachedVersion.version
+      );
+      
+      if (isNewVersion) {
+        console.log('New version detected:', latestVersion);
+        notifyClientsOfUpdate(latestVersion);
+      }
+    }
+  } catch (error) {
+    console.error('Failed to check for updates:', error);
+  }
+}
+
+function notifyClientsOfUpdate(newVersion) {
+  // Send update notification to all clients
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage({
+        type: 'UPDATE_AVAILABLE',
+        version: newVersion
+      });
+    });
+  });
+}
+
+async function forceUpdateCache() {
+  try {
+    // Clear all caches
+    await caches.delete(CACHE_NAME);
+    await caches.delete(TEMP);
+    await caches.delete(MANIFEST);
+    
+    // Trigger a fresh install
+    const newCache = await caches.open(CACHE_NAME);
+    
+    // Fetch and cache all resources with fresh requests
+    const fetchPromises = Object.keys(RESOURCES).map(async (resourcePath) => {
+      try {
+        const response = await fetch(resourcePath + '?_=' + Date.now(), {
+          cache: 'no-cache'
+        });
+        if (response.ok) {
+          await newCache.put(resourcePath, response);
+        }
+      } catch (error) {
+        console.error('Failed to update resource:', resourcePath, error);
+      }
+    });
+    
+    await Promise.all(fetchPromises);
+    
+    // Update the manifest cache
+    const manifestCache = await caches.open(MANIFEST);
+    await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
+    
+    console.log('Cache updated successfully');
+    return true;
+  } catch (error) {
+    console.error('Failed to update cache:', error);
+    return false;
+  }
+}
 
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
@@ -82,6 +187,8 @@ self.addEventListener("activate", function(event) {
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
         // Claim client to enable caching on first launch
         self.clients.claim();
+        // Start update checker
+        startUpdateChecker();
         return;
       }
       var oldManifest = await manifest.json();
@@ -109,6 +216,8 @@ self.addEventListener("activate", function(event) {
       await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
       // Claim client to enable caching on first launch
       self.clients.claim();
+      // Start update checker
+      startUpdateChecker();
       return;
     } catch (err) {
       // On an unhandled exception the state of the cache cannot be guaranteed.
@@ -167,6 +276,28 @@ self.addEventListener('message', (event) => {
   }
   if (event.data === 'downloadOffline') {
     downloadOffline();
+    return;
+  }
+  if (event.data.type === 'FORCE_UPDATE') {
+    event.waitUntil(
+      forceUpdateCache().then((success) => {
+        // Notify the client about update completion
+        event.ports[0].postMessage({
+          type: 'UPDATE_COMPLETE',
+          success: success
+        });
+      })
+    );
+    return;
+  }
+  if (event.data.type === 'CHECK_UPDATE') {
+    event.waitUntil(
+      checkForUpdates().then(() => {
+        event.ports[0].postMessage({
+          type: 'UPDATE_CHECK_COMPLETE'
+        });
+      })
+    );
     return;
   }
 });

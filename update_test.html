@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update System Test - HashTech Mobiles</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .test-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 5px;
+            transition: all 0.2s;
+        }
+        .test-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Update Notification System</h1>
+        <p>This system automatically detects when new versions are deployed to GitHub Pages and notifies users with an elegant update prompt.</p>
+        
+        <div class="info-box">
+            <h3>🚀 How it works:</h3>
+            <ul>
+                <li><strong>Automatic Detection:</strong> Checks for updates every 30 seconds by comparing version.json</li>
+                <li><strong>Smart Caching:</strong> Only updates when build number or version changes</li>
+                <li><strong>User-Friendly:</strong> Shows a beautiful notification with update options</li>
+                <li><strong>Force Refresh:</strong> Clears cache and fetches latest assets when user clicks update</li>
+            </ul>
+        </div>
+
+        <h3>🧪 Test the System:</h3>
+        <button class="test-btn" onclick="checkForUpdates()">Check for Updates</button>
+        <button class="test-btn" onclick="simulateUpdate()">Simulate Update Available</button>
+        <button class="test-btn" onclick="showSystemInfo()">Show System Info</button>
+
+        <div class="info-box">
+            <h3>📋 Implementation Steps:</h3>
+            <ol>
+                <li><strong>Enhanced Service Worker:</strong> Added update detection and cache management</li>
+                <li><strong>Version Tracking:</strong> Uses version.json for version comparison</li>
+                <li><strong>Update Notification UI:</strong> Beautiful, non-intrusive notification system</li>
+                <li><strong>Cache Strategy:</strong> Force refresh cache with cache-busting for new updates</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <h3>🔧 To deploy updates:</h3>
+            <div class="code">
+1. Update version.json with new version/build number<br>
+2. Deploy to GitHub Pages<br>
+3. Users will automatically see update notification<br>
+4. When they click "Update Now", latest assets are fetched
+            </div>
+        </div>
+
+        <div id="system-info" style="margin-top: 20px;"></div>
+    </div>
+
+    <script src="update_notification.js"></script>
+    <script>
+        function simulateUpdate() {
+            // Simulate an update notification for testing
+            if (window.updateManager) {
+                window.updateManager.newVersion = {
+                    version: "1.0.1",
+                    build_number: "2"
+                };
+                window.updateManager.isUpdateAvailable = true;
+                window.updateManager.showUpdateNotification();
+            } else {
+                alert('Update manager not initialized yet. Please wait a moment and try again.');
+            }
+        }
+
+        function showSystemInfo() {
+            const infoDiv = document.getElementById('system-info');
+            const hasServiceWorker = 'serviceWorker' in navigator;
+            const swState = navigator.serviceWorker?.controller ? 'Active' : 'Not Active';
+            
+            infoDiv.innerHTML = `
+                <div class="info-box">
+                    <h3>🔍 System Information:</h3>
+                    <p><strong>Service Worker Support:</strong> ${hasServiceWorker ? '✅ Yes' : '❌ No'}</p>
+                    <p><strong>Service Worker State:</strong> ${swState}</p>
+                    <p><strong>Update Manager:</strong> ${window.updateManager ? '✅ Initialized' : '❌ Not Initialized'}</p>
+                    <p><strong>Cache API:</strong> ${'caches' in window ? '✅ Supported' : '❌ Not Supported'}</p>
+                    <p><strong>Update Check Interval:</strong> 30 seconds</p>
+                </div>
+            `;
+        }
+
+        // Show system info on load
+        window.addEventListener('load', () => {
+            setTimeout(showSystemInfo, 1000);
+        });
+    </script>
+</body>
+</html>
