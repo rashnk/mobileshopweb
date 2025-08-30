@@ -2,14 +2,13 @@
 const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
-const UPDATE_CHECK_INTERVAL = 30000; // Check for updates every 30 seconds
 
 const RESOURCES = {"assets/AssetManifest.bin": "2831867d5c9a61ce99cbed8421d4b786",
 "assets/AssetManifest.bin.json": "e15a6bf18e6e485cb2950526380249ee",
 "assets/AssetManifest.json": "0d07a80e220297849733d36494744a30",
 "assets/assets/data/phone_brands.json": "a767670054ab392d7e4456191d71bb3b",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/fonts/MaterialIcons-Regular.otf": "a168c2e0febe76e97544a5955187165b",
+"assets/fonts/MaterialIcons-Regular.otf": "8f0adc04b8e850b774ee259aebdff07f",
 "assets/NOTICES": "8b76fca7199b7d4019e474fc37eda7e8",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "33b7d9392238c04c131b6ce224e13711",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
@@ -27,132 +26,23 @@ const RESOURCES = {"assets/AssetManifest.bin": "2831867d5c9a61ce99cbed8421d4b786
 "canvaskit/skwasm_heavy.wasm": "8034ad26ba2485dab2fd49bdd786837b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
-"flutter_bootstrap.js": "6ea23fc7828cb933cc90c330f6d115e6",
+"flutter_bootstrap.js": "8fd295ee8479ae1dbc2faf1160103c52",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "2f356f8d3300e35fc8a692be9579e1f8",
-"/": "2f356f8d3300e35fc8a692be9579e1f8",
-"main.dart.js": "36936703f649a099bf861e72dd061c6f",
-"main.dart.mjs": "9bef452fca94a41bb7225331336fff98",
-"main.dart.wasm": "eafe52f02c62e83d0da03fd0cce89da0",
-"main.dart.wasm.map": "c592ceedcd2ca800f338f3264028cfc5",
+"index.html": "559206ececf0538b0eb2fe643fa519f1",
+"/": "559206ececf0538b0eb2fe643fa519f1",
+"main.dart.js": "1e59907660cf5a27fbd78072510c5a07",
 "manifest.json": "1a3892ad063c75666ac86f702c303085",
-"update_notification.js": "a1b2c3d4e5f6789012345678901234567890abcd",
 "version.json": "66b4fe090ab4823e408ce15b42c4b7c0"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
-"main.dart.wasm",
-"main.dart.mjs",
 "index.html",
 "flutter_bootstrap.js",
 "assets/AssetManifest.bin.json",
 "assets/FontManifest.json"];
-
-// Check for updates periodically and notify clients
-let updateCheckTimer;
-
-function startUpdateChecker() {
-  if (updateCheckTimer) {
-    clearInterval(updateCheckTimer);
-  }
-  
-  updateCheckTimer = setInterval(async () => {
-    try {
-      await checkForUpdates();
-    } catch (error) {
-      console.error('Update check failed:', error);
-    }
-  }, UPDATE_CHECK_INTERVAL);
-}
-
-async function checkForUpdates() {
-  try {
-    // Fetch the latest version.json with cache-busting
-    const versionResponse = await fetch('/version.json?_=' + Date.now(), {
-      cache: 'no-cache'
-    });
-    
-    if (!versionResponse.ok) {
-      return;
-    }
-    
-    const latestVersion = await versionResponse.json();
-    
-    // Get the cached version
-    const contentCache = await caches.open(CACHE_NAME);
-    const cachedVersionResponse = await contentCache.match('/version.json');
-    
-    if (cachedVersionResponse) {
-      const cachedVersion = await cachedVersionResponse.json();
-      
-      // Compare versions (build number or version string)
-      const isNewVersion = (
-        latestVersion.build_number !== cachedVersion.build_number ||
-        latestVersion.version !== cachedVersion.version
-      );
-      
-      if (isNewVersion) {
-        console.log('New version detected:', latestVersion);
-        notifyClientsOfUpdate(latestVersion);
-      }
-    }
-  } catch (error) {
-    console.error('Failed to check for updates:', error);
-  }
-}
-
-function notifyClientsOfUpdate(newVersion) {
-  // Send update notification to all clients
-  self.clients.matchAll().then(clients => {
-    clients.forEach(client => {
-      client.postMessage({
-        type: 'UPDATE_AVAILABLE',
-        version: newVersion
-      });
-    });
-  });
-}
-
-async function forceUpdateCache() {
-  try {
-    // Clear all caches
-    await caches.delete(CACHE_NAME);
-    await caches.delete(TEMP);
-    await caches.delete(MANIFEST);
-    
-    // Trigger a fresh install
-    const newCache = await caches.open(CACHE_NAME);
-    
-    // Fetch and cache all resources with fresh requests
-    const fetchPromises = Object.keys(RESOURCES).map(async (resourcePath) => {
-      try {
-        const response = await fetch(resourcePath + '?_=' + Date.now(), {
-          cache: 'no-cache'
-        });
-        if (response.ok) {
-          await newCache.put(resourcePath, response);
-        }
-      } catch (error) {
-        console.error('Failed to update resource:', resourcePath, error);
-      }
-    });
-    
-    await Promise.all(fetchPromises);
-    
-    // Update the manifest cache
-    const manifestCache = await caches.open(MANIFEST);
-    await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
-    
-    console.log('Cache updated successfully');
-    return true;
-  } catch (error) {
-    console.error('Failed to update cache:', error);
-    return false;
-  }
-}
 
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
@@ -187,8 +77,6 @@ self.addEventListener("activate", function(event) {
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
         // Claim client to enable caching on first launch
         self.clients.claim();
-        // Start update checker
-        startUpdateChecker();
         return;
       }
       var oldManifest = await manifest.json();
@@ -216,8 +104,6 @@ self.addEventListener("activate", function(event) {
       await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
       // Claim client to enable caching on first launch
       self.clients.claim();
-      // Start update checker
-      startUpdateChecker();
       return;
     } catch (err) {
       // On an unhandled exception the state of the cache cannot be guaranteed.
@@ -276,28 +162,6 @@ self.addEventListener('message', (event) => {
   }
   if (event.data === 'downloadOffline') {
     downloadOffline();
-    return;
-  }
-  if (event.data.type === 'FORCE_UPDATE') {
-    event.waitUntil(
-      forceUpdateCache().then((success) => {
-        // Notify the client about update completion
-        event.ports[0].postMessage({
-          type: 'UPDATE_COMPLETE',
-          success: success
-        });
-      })
-    );
-    return;
-  }
-  if (event.data.type === 'CHECK_UPDATE') {
-    event.waitUntil(
-      checkForUpdates().then(() => {
-        event.ports[0].postMessage({
-          type: 'UPDATE_CHECK_COMPLETE'
-        });
-      })
-    );
     return;
   }
 });
