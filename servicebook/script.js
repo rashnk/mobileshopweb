@@ -121,7 +121,10 @@ createApp({
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(this.loginForm)
+                    body: JSON.stringify({
+                        username: this.loginForm.username,
+                        password: this.encrypt(this.loginForm.password)
+                    })
                 });
 
                 const data = await response.json();
@@ -175,7 +178,7 @@ createApp({
             return {
                 'Content-Type': 'application/json',
                 'username': this.loginForm.username,
-                'password': this.loginForm.password
+                'password': this.encrypt(this.loginForm.password)
             };
         },
 
