@@ -79,27 +79,14 @@ createApp({
     },
 
     methods: {
-        // Generate domain-based salt to prevent cross-domain localStorage usage
-        getDomainSalt() {
-            const origin = window.location.origin || 'localhost:9999';
-            // Create a simple hash from domain for salt
-            let hash = 0;
-            for (let i = 0; i < origin.length; i++) {
-                const char = origin.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // Convert to 32bit integer
-            }
-            // Use absolute value and ensure it's between 1-10 for character shift
-            return Math.abs(hash % 10) + 1;
-        },
+
 
         // Simple encryption/decryption for localStorage with domain-based salt
         encrypt(text) {
             if (!text) return '';
-            const salt = this.getDomainSalt();
             // Apply domain salt + base shift
             const shifted = text.split('').map(char =>
-                String.fromCharCode(char.charCodeAt(0) + 3 + salt)
+                String.fromCharCode(char.charCodeAt(0) + 3 + 0)
             ).join('');
             return btoa(shifted);
         },
@@ -107,10 +94,9 @@ createApp({
         decrypt(encryptedText) {
             if (!encryptedText) return '';
             try {
-                const salt = this.getDomainSalt();
                 const decoded = atob(encryptedText);
                 return decoded.split('').map(char =>
-                    String.fromCharCode(char.charCodeAt(0) - 3 - salt)
+                    String.fromCharCode(char.charCodeAt(0) - 3 - 0)
                 ).join('');
             } catch (error) {
                 console.error('Decryption failed:', error);
