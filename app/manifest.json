@@ -1,11 +1,11 @@
 {
-    "name": "mobile_shop_management",
-    "short_name": "mobile_shop_management",
+    "name": "RM2",
+    "short_name": "RM2",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
     "theme_color": "#hexcode",
-    "description": "A new Flutter project.",
+    "description": "Mobile Shop Service Manager",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
