@@ -1,17 +1,25 @@
 
 const { createApp } = Vue;
-localApi = 'http://127.0.0.1:5001/shopmgr-fea0d/us-central1/apiDev/servicebook';
-devApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/apiDev/servicebook'
-prodApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/api/servicebook'
+
+
+const localApi = 'http://127.0.0.1:5001/shopmgr-fea0d/us-central1/apiDev/servicebook';
+const devApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/apiDev/servicebook';
+const prodApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/api/servicebook';
+
+const useCustomApi = true;
+const customApi = prodApi;
 
 // use prodapi when github.io in url
 // use localApi when localhost or 127.0.0.1 in url
 // use devApi otherwise
 let apiBaseUrlforEnv = devApi;
-if (window.location.href.includes('github.io')) {
+if (window.location.origin.includes('rashnk.github.io')) {
     apiBaseUrlforEnv = prodApi;
-} else if (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) {
+} else if (window.location.origin.includes('localhost:3000')) {
     apiBaseUrlforEnv = localApi;
+}
+if (useCustomApi) {
+    apiBaseUrlforEnv = customApi;
 }
 
 createApp({
@@ -73,11 +81,11 @@ createApp({
     methods: {
         // Generate domain-based salt to prevent cross-domain localStorage usage
         getDomainSalt() {
-            const domain = window.location.hostname || 'localhost';
+            const origin = window.location.origin || 'localhost:9999';
             // Create a simple hash from domain for salt
             let hash = 0;
-            for (let i = 0; i < domain.length; i++) {
-                const char = domain.charCodeAt(i);
+            for (let i = 0; i < origin.length; i++) {
+                const char = origin.charCodeAt(i);
                 hash = ((hash << 5) - hash) + char;
                 hash = hash & hash; // Convert to 32bit integer
             }
@@ -90,7 +98,7 @@ createApp({
             if (!text) return '';
             const salt = this.getDomainSalt();
             // Apply domain salt + base shift
-            const shifted = text.split('').map(char => 
+            const shifted = text.split('').map(char =>
                 String.fromCharCode(char.charCodeAt(0) + 3 + salt)
             ).join('');
             return btoa(shifted);
@@ -101,7 +109,7 @@ createApp({
             try {
                 const salt = this.getDomainSalt();
                 const decoded = atob(encryptedText);
-                return decoded.split('').map(char => 
+                return decoded.split('').map(char =>
                     String.fromCharCode(char.charCodeAt(0) - 3 - salt)
                 ).join('');
             } catch (error) {
