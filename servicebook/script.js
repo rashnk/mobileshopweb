@@ -71,6 +71,45 @@ createApp({
     },
 
     methods: {
+        // Generate domain-based salt to prevent cross-domain localStorage usage
+        getDomainSalt() {
+            const domain = window.location.hostname || 'localhost';
+            // Create a simple hash from domain for salt
+            let hash = 0;
+            for (let i = 0; i < domain.length; i++) {
+                const char = domain.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            // Use absolute value and ensure it's between 1-10 for character shift
+            return Math.abs(hash % 10) + 1;
+        },
+
+        // Simple encryption/decryption for localStorage with domain-based salt
+        encrypt(text) {
+            if (!text) return '';
+            const salt = this.getDomainSalt();
+            // Apply domain salt + base shift
+            const shifted = text.split('').map(char => 
+                String.fromCharCode(char.charCodeAt(0) + 3 + salt)
+            ).join('');
+            return btoa(shifted);
+        },
+
+        decrypt(encryptedText) {
+            if (!encryptedText) return '';
+            try {
+                const salt = this.getDomainSalt();
+                const decoded = atob(encryptedText);
+                return decoded.split('').map(char => 
+                    String.fromCharCode(char.charCodeAt(0) - 3 - salt)
+                ).join('');
+            } catch (error) {
+                console.error('Decryption failed:', error);
+                return '';
+            }
+        },
+
         // Authentication Methods
         async login() {
             this.isLoggingIn = true;
@@ -94,7 +133,7 @@ createApp({
                         user: data.user,
                         credentials: {
                             username: this.loginForm.username,
-                            password: this.loginForm.password
+                            password: this.encrypt(this.loginForm.password)
                         }
                     }));
                     this.loadInitialData();
@@ -124,7 +163,7 @@ createApp({
                     this.isLoggedIn = true;
                     this.currentUser = authData.user;
                     this.loginForm.username = authData.credentials.username;
-                    this.loginForm.password = authData.credentials.password;
+                    this.loginForm.password = this.decrypt(authData.credentials.password);
                     this.loadInitialData();
                 } catch (error) {
                     localStorage.removeItem('serviceBookAuth');
