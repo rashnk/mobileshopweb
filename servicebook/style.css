@@ -742,13 +742,13 @@
             }
 
             /* Hide less important columns on small screens */
-            .data-table th:nth-child(3),
-            .data-table td:nth-child(3) {
+            .data-table th:nth-child(2),
+            .data-table td:nth-child(2) {
                 display: none; /* Hide device column */
             }
 
-            .data-table th:nth-child(4),
-            .data-table td:nth-child(4) {
+            .data-table th:nth-child(3),
+            .data-table td:nth-child(3) {
                 display: none; /* Hide issue column */
             }
 

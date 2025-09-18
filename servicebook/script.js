@@ -6,8 +6,8 @@ const localApi = 'http://127.0.0.1:5001/shopmgr-fea0d/us-central1/apiDev/service
 const devApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/apiDev/servicebook';
 const prodApi = 'https://us-central1-shopmgr-fea0d.cloudfunctions.net/api/servicebook';
 
-const useCustomApi = true;
-const customApi = prodApi;
+const useCustomApi = false; //make true to use customApi irrespective of environment
+const customApi = prodApi; //set your custom api here
 
 // use prodapi when github.io in url
 // use localApi when localhost or 127.0.0.1 in url

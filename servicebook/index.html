@@ -200,7 +200,7 @@
                                         <th>Total Services</th>
                                         <th>Total Amount</th>
                                         <th>Paid Amount</th>
-                                        <th>Balance</th>
+                                        <!-- <th>Balance</th> -->
                                         <th>Due Amount</th>
                                         <th>Actions</th>
                                     </tr>
@@ -215,14 +215,14 @@
                                         <td class="amount" :class="customer.servicesSummary.totalBalanceAmount > 0 ? 'negative' : ''">
                                             ₹{{ formatAmount(customer.servicesSummary.totalBalanceAmount) }}
                                         </td>
-                                        <td class="amount" :class="customer.servicesSummary.totalDueAmount > 0 ? 'negative' : 'positive'">
+                                        <!-- <td class="amount" :class="customer.servicesSummary.totalDueAmount > 0 ? 'negative' : 'positive'">
                                             ₹{{ formatAmount(customer.servicesSummary.totalDueAmount) }}
-                                            <!-- <span v-if="customer.servicesSummary.dueServicesCount > 0" 
+                                            <span v-if="customer.servicesSummary.dueServicesCount > 0" 
                                                   class="status-badge" 
                                                   style="margin-left: 0.5rem; background: #f8d7da; color: #721c24; font-size: 0.7rem;">
                                                 {{ customer.servicesSummary.dueServicesCount }} due
-                                            </span> -->
-                                        </td>
+                                            </span>
+                                        </td> -->
                                         <td>
                                             <button 
                                                 @click="viewCustomerServices(customer)" 
