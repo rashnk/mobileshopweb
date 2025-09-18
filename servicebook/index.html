@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Book - Customer Payment Tracking</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div v-if="!isLoggedIn" class="login-container">
+            <div class="login-card">
+                <h1><i class="fas fa-book"></i> Service Book</h1>
+                <form @submit.prevent="login">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            v-model="loginForm.username" 
+                            required 
+                            placeholder="Enter username"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            v-model="loginForm.password" 
+                            required 
+                            placeholder="Enter password"
+                        >
+                    </div>
+                    <div v-if="loginError" class="error-message">
+                        {{ loginError }}
+                    </div>
+                    <button type="submit" class="btn btn-primary" :disabled="isLoggingIn">
+                        <i v-if="isLoggingIn" class="fas fa-spinner fa-spin"></i>
+                        {{ isLoggingIn ? 'Logging in...' : 'Login' }}
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <!-- Header -->
+        <div v-if="isLoggedIn" class="app-header">
+            <div class="header-left">
+                <div class="app-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="app-info">
+                    <div class="app-title">Service Book</div>
+                    <!-- <div class="app-subtitle">Welcome, {{ currentUser.name }}</div> -->
+                    <div class="app-subtitle">Welcome, Hashech</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button @click="logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <div v-if="isLoggedIn" class="container">
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card revenue">
+                    <div class="icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="value">₹{{ formatAmount(summary.totalRevenue) }}</div>
+                    <div class="label">Total Revenue</div>
+                </div>
+                <div class="stat-card collected">
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="value">₹{{ formatAmount(summary.totalCollected) }}</div>
+                    <div class="label">Amount Collected</div>
+                </div>
+                <div class="stat-card pending">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <div class="value">₹{{ formatAmount(summary.totalPending) }}</div>
+                    <div class="label">Pending Amount</div>
+                </div>
+                <div class="stat-card services">
+                    <div class="icon"><i class="fas fa-wrench"></i></div>
+                    <div class="value">{{ summary.totalServices }}</div>
+                    <div class="label">Total Services</div>
+                </div>
+                <div class="stat-card completed">
+                    <div class="icon"><i class="fas fa-check-double"></i></div>
+                    <div class="value">{{ summary.completedServices }}</div>
+                    <div class="label">Completed Services</div>
+                </div>
+                <div class="stat-card delivered">
+                    <div class="icon"><i class="fas fa-truck"></i></div>
+                    <div class="value">{{ summary.deliveredServices }}</div>
+                    <div class="label">Delivered Services</div>
+                </div>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="search-container">
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; position: relative;">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            v-model="searchQuery" 
+                            placeholder="Search customers by name, phone, or email... (Press Enter to search)"
+                            @keyup.enter="performSearch"
+                            style="padding-right: 40px;"
+                        >
+                        <button 
+                            v-if="searchQuery"
+                            @click="clearSearch" 
+                            class="clear-search-btn"
+                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #6c757d; cursor: pointer; padding: 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; transition: background-color 0.2s ease;"
+                            title="Clear search"
+                            @mouseover="$event.target.style.backgroundColor = '#f8f9fa'"
+                            @mouseout="$event.target.style.backgroundColor = 'transparent'"
+                        >
+                            <i class="fas fa-times" style="font-size: 12px;"></i>
+                        </button>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                        <button 
+                            @click="performSearch" 
+                            class="btn btn-secondary"
+                            style="padding: 12px 20px; white-space: nowrap;"
+                        >
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                        <!-- <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input 
+                                type="checkbox" 
+                                id="withDue" 
+                                v-model="filterWithDue"
+                                @change="applyFilters"
+                                style="width: auto;"
+                            >
+                            <label for="withDue" style="margin: 0; cursor: pointer; white-space: nowrap;">
+                                Show Only Due
+                            </label>
+                        </div> -->
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <label for="dueStatus" style="margin: 0; white-space: nowrap;">Service Status:</label>
+                            <select 
+                                id="dueStatus" 
+                                v-model="dueStatusFilter"
+                                @change="applyFilters"
+                                style="padding: 8px 12px; border: 2px solid #e1e5e9; border-radius: 6px; min-width: 150px;"
+                            >
+                                <option value="delivered,completed">Delivered & Completed</option>
+                                <option value="delivered">Delivered Only</option>
+                                <option value="completed">Completed Only</option>
+                                <option value="inProgress,completed,delivered">All Active</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tab-container">
+                <div class="tab-header">
+                    <button 
+                        class="tab-btn"
+                        :class="{ active: activeTab === 'customers' }"
+                        @click="activeTab = 'customers'"
+                    >
+                        <i class="fas fa-users"></i> Customers
+                    </button>
+                    <button 
+                        class="tab-btn"
+                        :class="{ active: activeTab === 'services' }"
+                        @click="activeTab = 'services'"
+                    >
+                        <i class="fas fa-wrench"></i> All Services
+                    </button>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Customers Tab -->
+                    <div v-if="activeTab === 'customers'">
+                        <div v-if="loading" class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading customers...</p>
+                        </div>
+                        
+                        <div v-else class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Phone</th>
+                                        <th>Total Services</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Balance</th>
+                                        <th>Due Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="customer in filteredCustomers" :key="customer.id">
+                                        <td class="clickable-customer" @click="viewCustomerServices(customer)">{{ customer.name }}</td>
+                                        <td>{{ customer.phone }}</td>
+                                        <td>{{ customer.servicesSummary.totalServices }}</td>
+                                        <td class="amount">₹{{ formatAmount(customer.servicesSummary.totalFinalCost) }}</td>
+                                        <td class="amount positive">₹{{ formatAmount(customer.servicesSummary.totalPaidAmount) }}</td>
+                                        <td class="amount" :class="customer.servicesSummary.totalBalanceAmount > 0 ? 'negative' : ''">
+                                            ₹{{ formatAmount(customer.servicesSummary.totalBalanceAmount) }}
+                                        </td>
+                                        <td class="amount" :class="customer.servicesSummary.totalDueAmount > 0 ? 'negative' : 'positive'">
+                                            ₹{{ formatAmount(customer.servicesSummary.totalDueAmount) }}
+                                            <!-- <span v-if="customer.servicesSummary.dueServicesCount > 0" 
+                                                  class="status-badge" 
+                                                  style="margin-left: 0.5rem; background: #f8d7da; color: #721c24; font-size: 0.7rem;">
+                                                {{ customer.servicesSummary.dueServicesCount }} due
+                                            </span> -->
+                                        </td>
+                                        <td>
+                                            <button 
+                                                @click="viewCustomerServices(customer)" 
+                                                class="btn btn-secondary"
+                                                style="padding: 6px 12px; font-size: 0.9rem;"
+                                            >
+                                                <i class="fas fa-eye"></i> View Services
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Services Tab -->
+                    <div v-if="activeTab === 'services'">
+                        <div v-if="loading" class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading services...</p>
+                        </div>
+                        
+                        <div v-else class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <!-- <th>Service ID</th> -->
+                                        <th>Customer</th>
+                                        <th>Device</th>
+                                        <th>Issue</th>
+                                        <th>Status</th>
+                                        <th>Final Cost</th>
+                                        <th>Paid</th>
+                                        <th>Balance</th>
+                                        <th>Payment Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="service in allServices" :key="service.id">
+                                        <!-- <td>{{ service.id }}</td> -->
+                                        <td class="clickable-customer" @click="updatePayment(service)">{{ service.customerName }}</td>
+                                        <td class="clickable-customer" @click="updatePayment(service)">{{ service.deviceName }}</td>
+                                        <td>{{ service.issue }}</td>
+                                        <td>
+                                            <span class="status-badge" :class="service.status.toLowerCase().replace(' ', '')">
+                                                {{ service.status }}
+                                            </span>
+                                        </td>
+                                        <td class="amount">₹{{ formatAmount(service.finalCost || 0) }}</td>
+                                        <td class="amount positive">₹{{ formatAmount(service.paidAmount || 0) }}</td>
+                                        <td class="amount" :class="getBalanceAmount(service) > 0 ? 'negative' : ''">
+                                            ₹{{ formatAmount(getBalanceAmount(service)) }}
+                                        </td>
+                                        <td>
+                                            <span class="status-badge" :class="getPaymentStatus(service)">
+                                                {{ getPaymentStatus(service) }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button 
+                                                @click="updatePayment(service)" 
+                                                class="btn btn-primary"
+                                                style="padding: 6px 12px; font-size: 0.9rem;"
+                                            >
+                                                <i class="fas fa-eye"></i> View/Pay
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Services Modal -->
+        <div v-if="showCustomerModal" class="modal-overlay" @click="closeCustomerModal">
+            <div class="modal" @click.stop>
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-user"></i> {{ selectedCustomer.name }} - Services
+                    </h3>
+                    <button @click="closeCustomerModal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content-scroll">
+                
+                <div class="service-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Customer Name</div>
+                        <div class="detail-value">{{ selectedCustomer.name }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Phone</div>
+                        <div class="detail-value">{{ selectedCustomer.phone }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Services</div>
+                        <div class="detail-value">{{ customerServices.totals?.totalServices || 0 }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Amount</div>
+                        <div class="detail-value">₹{{ formatAmount(customerServices.totals?.totalCost || 0) }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Paid Amount</div>
+                        <div class="detail-value">₹{{ formatAmount(customerServices.totals?.totalPaid || 0) }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Balance Amount</div>
+                        <div class="detail-value">₹{{ formatAmount(customerServices.totals?.totalBalance || 0) }}</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <!-- <th>Service ID</th> -->
+
+                                <th>Date</th>
+                                <th>Device</th>
+                                <th>Issue</th>
+                                <th>Status</th>
+                                <th>Final Cost</th>
+                                <th>Paid</th>
+                                <th>Balance</th>
+                                <th>Payment Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="service in customerServices.services" :key="service.id">
+                                <!-- <td>{{ service.id }}</td> -->
+                                <td>{{ formatDate(service.dateReceived) }}</td>
+                                <td>{{ service.deviceName }}</td>
+                                <td>{{ service.issue }}</td>
+                                <td>
+                                    <span class="status-badge" :class="service.status.toLowerCase().replace(' ', '')">
+                                        {{ service.status }}
+                                    </span>
+                                </td>
+                                <td class="amount">₹{{ formatAmount(service.paymentDetails.finalCost) }}</td>
+                                <td class="amount positive">₹{{ formatAmount(service.paymentDetails.paidAmount) }}</td>
+                                <td class="amount" :class="service.paymentDetails.balanceAmount > 0 ? 'negative' : ''">
+                                    ₹{{ formatAmount(service.paymentDetails.balanceAmount) }}
+                                </td>
+                                <td>
+                                    <span class="status-badge" :class="service.paymentDetails.paymentStatus">
+                                        {{ service.paymentDetails.paymentStatus }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button 
+                                        v-if="service.paymentDetails.balanceAmount > 0"
+                                        @click="updatePayment(service)" 
+                                        class="btn btn-success"
+                                        style="padding: 4px 8px; font-size: 0.8rem;"
+                                    >
+                                        <i class="fas fa-money-bill"></i> Pay
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div v-if="showPaymentModal" class="modal-overlay" @click="closePaymentModal">
+            <div class="modal" @click.stop>
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-money-bill"></i> Update Payment
+                    </h3>
+                    <button @click="closePaymentModal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content-scroll">
+
+                <div v-if="selectedService" class="service-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Service ID</div>
+                        <div class="detail-value">{{ selectedService.id }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Customer</div>
+                        <div class="detail-value">{{ selectedService.customerName }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Device</div>
+                        <div class="detail-value">{{ selectedService.deviceName }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Cost</div>
+                        <div class="detail-value">₹{{ formatAmount(getServiceFinalCost(selectedService)) }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Previously Paid</div>
+                        <div class="detail-value">₹{{ formatAmount(selectedService.paidAmount || 0) }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Balance Due</div>
+                        <div class="detail-value">₹{{ formatAmount(getBalanceAmount(selectedService)) }}</div>
+                    </div>
+                </div>
+
+                <form @submit.prevent="submitPayment">
+                    <div class="form-group">
+                        <label for="paidAmount">New Paid Amount</label>
+                        <input 
+                            type="number" 
+                            id="paidAmount" 
+                            v-model.number="paymentForm.paidAmount" 
+                            min="0" 
+                            :max="getServiceFinalCost(selectedService)"
+                            step="0.01"
+                            required 
+                            placeholder="Enter amount paid"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentNotes">Notes (Optional)</label>
+                        <input 
+                            type="text" 
+                            id="paymentNotes" 
+                            v-model="paymentForm.notes" 
+                            placeholder="Payment notes..."
+                        >
+                    </div>
+                    <div v-if="paymentError" class="error-message">
+                        {{ paymentError }}
+                    </div>
+                    <div v-if="paymentSuccess" class="success-message">
+                        {{ paymentSuccess }}
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="submit" class="btn btn-success" :disabled="isUpdatingPayment">
+                            <i v-if="isUpdatingPayment" class="fas fa-spinner fa-spin"></i>
+                            {{ isUpdatingPayment ? 'Updating...' : 'Update Payment' }}
+                        </button>
+                        <button type="button" @click="closePaymentModal" class="btn btn-secondary">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script src="./script.js"></script>
+</body>
+</html>

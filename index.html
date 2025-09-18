@@ -1,38 +1,1000 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileShop Manager - Professional Mobile Shop Management Solution</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #ec4899;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-white: #ffffff;
+            --bg-gray-50: #f8fafc;
+            --bg-gray-100: #f1f5f9;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6366f1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="./">
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="mobile_shop_management">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-xl);
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
 
-  <title>mobile_shop_management</title>
-  <link rel="manifest" href="manifest.json">
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .service-login-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            border: none;
+            cursor: pointer;
+        }
+
+        .service-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #f0f8ff, #e6f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary-color), #f97316);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, #e11d48, var(--secondary-color));
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--bg-white);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Platforms Section */
+        .platforms {
+            background: var(--bg-gray-50);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .platforms::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+            padding-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 2rem;
+                flex-direction: column;
+                gap: 1rem;
+                box-shadow: var(--shadow-xl);
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .features {
+                padding: 60px 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-login-btn {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 100px 0 40px;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animation for mobile menu */
+        .nav-links {
+            transition: all 0.3s ease;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        .btn:focus,
+        .nav-links a:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
+
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">MobileShop Manager</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#platforms">Platforms</a></li>
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Service Login moved to footer Support section -->
+            </ul>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Mobile Shop Management</h1>
+                <p>Streamline your mobile shop operations with our comprehensive management solution. Handle sales,
+                    services, reports, and staff management all in one place.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Get Started Free
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-play"></i> Watch Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to manage your mobile shop efficiently and professionally
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cash-register"></i>
+                    </div>
+                    <h3>Sales Management</h3>
+                    <p>Track sales, manage inventory, generate invoices, and handle transactions with ease</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Service Tracking</h3>
+                    <p>Manage device repairs, track service status, and maintain customer service history</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Management</h3>
+                    <p>Maintain customer database, track purchase history, and build lasting relationships</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Reports</h3>
+                    <p>Generate detailed reports, track performance metrics, and make data-driven decisions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Inventory Control</h3>
+                    <p>Monitor stock levels, track product movements, and automate reorder notifications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Backup</h3>
+                    <p>Secure data encryption, automatic backups, and role-based access control</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Mobile Shop Manager</h3>
+        <p>Complete inventory management for mobile phones, accessories, and parts with real-time stock tracking.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Sales Management</h3>
+        <p>Efficient point-of-sale system with invoice generation, payment processing, and sales analytics.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>Service Management</h3>
+        <p>Track repair jobs, manage technicians, and monitor service status with detailed work orders.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Reports & Analytics</h3>
+        <p>Generate comprehensive reports on sales, inventory, profits, and performance metrics.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>User Login & Staff</h3>
+        <p>Secure user authentication with role-based access control for staff and administrators.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Service Status Tracking</h3>
+        <p>Real-time updates on repair progress with customer notifications and status history.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <section id="platforms" class="platforms">
+        <div class="container">
+            <h2 class="section-title">Available on Multiple Platforms</h2>
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">🖥️</div>
+                    <h3>Windows Desktop</h3>
+                    <p>Full-featured desktop application with offline capabilities and local data storage.</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">📱</div>
+                    <h3>Android Mobile</h3>
+                    <p>Mobile app for on-the-go access to inventory, sales, and service management.</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🌐</div>
+                    <h3>Web Platform</h3>
+                    <p>Browser-based access from any device with cloud synchronization and real-time updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Windows Desktop</h3>
+                    <div class="price">$19</div>
+                    <p>One-time purchase</p>
+                    <ul class="pricing-features">
+                        <li>Full desktop application</li>
+                        <li>Offline functionality</li>
+                        <li>Local data storage</li>
+                        <li>Lifetime updates</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Buy Now</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Mobile App</h3>
+                    <div class="price">$19</div>
+                    <p>One-time purchase</p>
+                    <ul class="pricing-features">
+                        <li>Android mobile app</li>
+                        <li>Sync with desktop</li>
+                        <li>On-the-go access</li>
+                        <li>Basic features</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Buy Now</a>
+                </div>
+                <div class="pricing-card popular">
+                    <h3>Cloud Solution</h3>
+                    <div class="price">$19</div>
+                    <p>Per month</p>
+                    <ul class="pricing-features">
+                        <li>All platforms included</li>
+                        <li>Cloud synchronization</li>
+                        <li>Advanced analytics</li>
+                        <li>Multi-location support</li>
+                        <li>24/7 premium support</li>
+                    </ul>
+                    <a href="plans.html" class="btn btn-primary">Compare Plans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MobileShop Manager</h4>
+                    <!-- <p>Professional mobile shop management solution for modern businesses.</p> -->
+                    <ul>
+                        <li><a href="servicebook/index.html" target="_blank">Service Book</a></li>
+                        <li><a href="app/index.html" target="_blank">RM2 Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">Sales Management</a></li>
+                        <li><a href="#">Service Tracking</a></li>
+                        <li><a href="#">Reports & Analytics</a></li>
+                        <li><a href="#">Staff Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <!-- <li><a href="servicebook/index.html">Service Login</a></li> -->
+                        <li><a href="#">System Requirements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MobileShop Manager. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and other elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .platform-card, .pricing-card');
+            animatedElements.forEach(el => {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
 </body>
+
 </html>
