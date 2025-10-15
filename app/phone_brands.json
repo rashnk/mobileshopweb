@@ -1,0 +1,1288 @@
+{
+  "Apple": {
+    "name": "Apple",
+    "country": "United States",
+    "models": [
+      {
+        "name": "iPhone 15 Pro Max",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Flagship device with titanium frame, A17 Pro chip, USB-C, 5x telephoto camera, and Action button. Features a 6.7\" ProMotion XDR display and advanced camera system.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.7\" Super Retina XDR OLED, 120Hz ProMotion",
+          "Battery": "4441mAh, 20W charging",
+          "Main Camera": "48MP + 12MP + 12MP",
+          "Processor": "A17 Pro"
+        }
+      },
+      {
+        "name": "iPhone 15 Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Premium model with titanium design, A17 Pro chip, USB-C port, and Action button. Features a 6.1\" ProMotion XDR display and pro camera system.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB/256GB/512GB/1TB",
+          "Display": "6.1\" Super Retina XDR OLED, 120Hz ProMotion",
+          "Battery": "3274mAh, 20W charging",
+          "Main Camera": "48MP + 12MP + 12MP",
+          "Processor": "A17 Pro"
+        }
+      },
+      {
+        "name": "iPhone 15 Plus",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Larger model with A16 Bionic chip, Dynamic Island, USB-C port, and improved 48MP main camera. Features a 6.7\" Super Retina XDR display.",
+        "specifications": {
+          "RAM": "6GB",
+          "Storage": "128GB/256GB/512GB",
+          "Display": "6.7\" Super Retina XDR OLED, 60Hz",
+          "Battery": "4383mAh, 20W charging",
+          "Main Camera": "48MP + 12MP",
+          "Processor": "A16 Bionic"
+        }
+      },
+      {
+        "name": "iPhone 15",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Base model featuring A16 Bionic chip, Dynamic Island, USB-C port, and 48MP main camera. Includes a 6.1\" Super Retina XDR display.",
+        "specifications": {
+          "RAM": "6GB",
+          "Storage": "128GB/256GB/512GB",
+          "Display": "6.1\" Super Retina XDR OLED, 60Hz",
+          "Battery": "3349mAh, 20W charging",
+          "Main Camera": "48MP + 12MP",
+          "Processor": "A16 Bionic"
+        }
+      },
+      {
+        "name": "iPhone 14 Pro Max",
+        "launch_year": 2022,
+        "price_range": "Premium",
+        "description": "Previous generation flagship with Dynamic Island, A16 Bionic chip, and 48MP main camera. Features a 6.7\" ProMotion XDR display.",
+        "specifications": {
+          "RAM": "6GB",
+          "Storage": "128GB/256GB/512GB/1TB",
+          "Display": "6.7\" Super Retina XDR OLED, 120Hz ProMotion",
+          "Battery": "4323mAh, 20W charging",
+          "Main Camera": "48MP + 12MP + 12MP",
+          "Processor": "A16 Bionic"
+        }
+      },
+      {
+        "name": "iPhone SE (3rd gen)",
+        "launch_year": 2022,
+        "price_range": "Mid-range",
+        "description": "Compact iPhone with A15 Bionic chip, Touch ID, and classic design. Features 5G support and improved camera capabilities.",
+        "specifications": {
+          "RAM": "4GB",
+          "Storage": "64GB/128GB/256GB",
+          "Display": "4.7\" Retina HD LCD, 60Hz",
+          "Battery": "2018mAh, 20W charging",
+          "Main Camera": "12MP",
+          "Processor": "A15 Bionic"
+        }
+      }
+    ]
+  },
+  "Samsung": {
+    "name": "Samsung",
+    "country": "South Korea",
+    "models": [
+      {
+        "name": "Galaxy S24 Ultra",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship device featuring a 6.8\" QHD+ Dynamic AMOLED display, Snapdragon 8 Gen 3 processor, 200MP main camera, S Pen support, and advanced AI capabilities including Circle to Search and Live Translate.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.8\" QHD+ Dynamic AMOLED 2X, 120Hz",
+          "Battery": "5000mAh, 45W charging",
+          "Main Camera": "200MP + 50MP + 12MP + 10MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Galaxy S24+",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Premium smartphone with 6.7\" QHD+ Dynamic AMOLED display, Snapdragon 8 Gen 3 processor, triple camera setup, and Galaxy AI features for enhanced productivity.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.7\" QHD+ Dynamic AMOLED 2X, 120Hz",
+          "Battery": "4900mAh, 45W charging",
+          "Main Camera": "50MP + 12MP + 10MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Galaxy S24",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Compact flagship with 6.2\" Dynamic AMOLED display, powerful Snapdragon 8 Gen 3 processor, advanced camera system, and comprehensive AI integration.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.2\" FHD+ Dynamic AMOLED 2X, 120Hz",
+          "Battery": "4000mAh, 25W charging",
+          "Main Camera": "50MP + 12MP + 10MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Galaxy S23 Ultra",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Premium device with 6.8\" Dynamic AMOLED display, 200MP main camera, integrated S Pen, Snapdragon 8 Gen 2 processor, and 5000mAh battery.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.8\" QHD+ Dynamic AMOLED 2X, 120Hz",
+          "Battery": "5000mAh, 45W charging",
+          "Main Camera": "200MP + 10MP + 12MP + 10MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "Galaxy Z Fold5",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Foldable smartphone with 7.6\" main display, improved hinge design, Snapdragon 8 Gen 2 processor, and enhanced multitasking capabilities.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "7.6\" Dynamic AMOLED 2X Foldable + 6.2\" Cover",
+          "Battery": "4400mAh, 25W charging",
+          "Main Camera": "50MP + 12MP + 10MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "Galaxy Z Flip5",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Compact foldable with larger 3.4\" cover display, Snapdragon 8 Gen 2 processor, dual 12MP cameras, and IPX8 water resistance.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.7\" Dynamic AMOLED 2X Foldable + 3.4\" Cover",
+          "Battery": "3700mAh, 25W charging",
+          "Main Camera": "12MP + 12MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "Galaxy A54 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Feature-rich mid-range device with 6.4\" Super AMOLED display, 50MP main camera, 5000mAh battery, and IP67 water resistance.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.4\" Super AMOLED, 120Hz",
+          "Battery": "5000mAh, 25W charging",
+          "Main Camera": "50MP + 12MP + 5MP",
+          "Processor": "Exynos 1380"
+        }
+      },
+      {
+        "name": "Galaxy S23 FE",
+        "launch_year": 2023,
+        "price_range": "Upper Mid-range",
+        "description": "Value flagship featuring 6.4\" Dynamic AMOLED display, Snapdragon 8 Gen 1 processor, triple camera setup, and wireless charging.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.4\" Dynamic AMOLED 2X, 120Hz",
+          "Battery": "4500mAh, 25W charging",
+          "Main Camera": "50MP + 12MP + 8MP",
+          "Processor": "Snapdragon 8 Gen 1"
+        }
+      },
+      {
+        "name": "Galaxy M34 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with 6.5\" Super AMOLED display, 50MP main camera, massive 6000mAh battery, and 5G connectivity.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB",
+          "Display": "6.5\" Super AMOLED, 120Hz",
+          "Battery": "6000mAh, 25W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Exynos 1280"
+        }
+      },
+      {
+        "name": "Galaxy A14 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Affordable 5G smartphone with 6.6\" LCD display, 50MP main camera, 5000mAh battery, and Android 13 out of the box.",
+        "specifications": {
+          "RAM": "4GB/6GB",
+          "Storage": "64GB/128GB",
+          "Display": "6.6\" LCD, 90Hz",
+          "Battery": "5000mAh, 15W charging",
+          "Main Camera": "50MP + 2MP + 2MP",
+          "Processor": "Dimensity 700"
+        }
+      }
+    ]
+  },
+  "Xiaomi": {
+    "name": "Xiaomi",
+    "country": "China",
+    "models": [
+      {
+        "name": "Redmi Note 13 Pro+ 5G",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Premium mid-ranger with 6.67\" 120Hz AMOLED display, Dimensity 7200-Ultra, 200MP main camera, 120W fast charging, and IP68 rating.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.67\" AMOLED, 1.5K resolution, 120Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "200MP + 8MP + 2MP",
+          "Processor": "Dimensity 7200-Ultra"
+        }
+      },
+      {
+        "name": "Xiaomi 14 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship device with Snapdragon 8 Gen 3, Leica-tuned cameras, 6.73\" LTPO AMOLED display, and 120W HyperCharge.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.73\" LTPO AMOLED, 2K resolution, 120Hz",
+          "Battery": "4880mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 50MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "POCO X6 Pro",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Performance-focused mid-ranger with Dimensity 8300-Ultra, 64MP main camera, 67W fast charging, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.67\" AMOLED, 1.5K resolution, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "64MP + 8MP + 2MP",
+          "Processor": "Dimensity 8300-Ultra"
+        }
+      },
+      {
+        "name": "Redmi Note 13 5G",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Value device with 6.67\" AMOLED display, Dimensity 6080, 108MP main camera, and 33W fast charging.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "108MP + 8MP + 2MP",
+          "Processor": "Dimensity 6080"
+        }
+      },
+      {
+        "name": "Xiaomi 13T Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Premium device with Dimensity 9200+, Leica optics, 144Hz AMOLED display, and 120W HyperCharge technology.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.67\" AMOLED, 1.5K resolution, 144Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 12MP",
+          "Processor": "Dimensity 9200+"
+        }
+      },
+      {
+        "name": "POCO F5",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Performance mid-ranger with Snapdragon 7+ Gen 2, 64MP main camera, 67W charging, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "64MP + 8MP + 2MP",
+          "Processor": "Snapdragon 7+ Gen 2"
+        }
+      },
+      {
+        "name": "Redmi 12 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Affordable 5G phone with Snapdragon 4 Gen 2, 50MP main camera, 5000mAh battery, and 90Hz display.",
+        "specifications": {
+          "RAM": "4GB/6GB/8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.79\" IPS LCD, FHD+, 90Hz",
+          "Battery": "5000mAh, 18W charging",
+          "Main Camera": "50MP + 2MP",
+          "Processor": "Snapdragon 4 Gen 2"
+        }
+      },
+      {
+        "name": "POCO M6 Pro",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Budget gaming phone with Helio G99, 50MP main camera, 5000mAh battery, and 90Hz display.",
+        "specifications": {
+          "RAM": "4GB/6GB/8GB",
+          "Storage": "64GB/128GB",
+          "Display": "6.79\" IPS LCD, FHD+, 90Hz",
+          "Battery": "5000mAh, 18W charging",
+          "Main Camera": "50MP + 2MP",
+          "Processor": "Helio G99"
+        }
+      },
+      {
+        "name": "Redmi Note 12 Pro+ 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Feature-rich mid-ranger with 200MP main camera, Dimensity 1080, 120W charging, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "200MP + 8MP + 2MP",
+          "Processor": "Dimensity 1080"
+        }
+      },
+      {
+        "name": "Xiaomi 13 Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Premium flagship with Snapdragon 8 Gen 2, Leica triple 50MP cameras, 120W charging, and ceramic build.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.73\" LTPO AMOLED, 2K resolution, 120Hz",
+          "Battery": "4820mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 50MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      }
+    ]
+  },
+  "Vivo": {
+    "name": "Vivo",
+    "country": "China",
+    "models": [
+      {
+        "name": "X100 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Premium flagship with Dimensity 9300, 1-inch main sensor, V3 chip, and advanced ZEISS optics.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.78\" AMOLED, 3200x1440, 120Hz LTPO",
+          "Battery": "5400mAh, 100W charging",
+          "Main Camera": "50MP + 50MP + 50MP",
+          "Processor": "Dimensity 9300"
+        }
+      },
+      {
+        "name": "V30 Pro",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Camera-focused with Snapdragon 8 Gen 2, 50MP dual front cameras, and ZEISS portrait features.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 80W charging",
+          "Main Camera": "50MP + 50MP + 12MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "iQOO 12",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Gaming flagship with Snapdragon 8 Gen 3, 144Hz display, 50MP main camera, and 120W charging.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" AMOLED, 1.5K resolution, 144Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 64MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "V29 Pro",
+        "launch_year": 2023,
+        "price_range": "Upper Mid-range",
+        "description": "Stylish mid-ranger with Dimensity 8200, 50MP main camera, Aura Light, and 80W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" AMOLED, FHD+, 120Hz",
+          "Battery": "4600mAh, 80W charging",
+          "Main Camera": "50MP + 12MP + 8MP",
+          "Processor": "Dimensity 8200"
+        }
+      },
+      {
+        "name": "X90 Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Photography flagship with V2 chip, 1-inch main sensor, ZEISS optics, and 120W charging.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" AMOLED, 1260x2800, 120Hz",
+          "Battery": "4870mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 12MP",
+          "Processor": "Dimensity 9200"
+        }
+      },
+      {
+        "name": "T2 Pro 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Value device with Dimensity 7200, 64MP main camera, 66W charging, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "4600mAh, 66W charging",
+          "Main Camera": "64MP + 2MP",
+          "Processor": "Dimensity 7200"
+        }
+      },
+      {
+        "name": "V29e 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Slim mid-ranger with Snapdragon 695, 64MP main camera, and unique color-changing design.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "4800mAh, 44W charging",
+          "Main Camera": "64MP + 8MP",
+          "Processor": "Snapdragon 695"
+        }
+      },
+      {
+        "name": "Y100",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Stylish budget phone with Dimensity 900, 64MP main camera, and color-changing back panel.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB",
+          "Display": "6.38\" AMOLED, FHD+, 90Hz",
+          "Battery": "4500mAh, 44W charging",
+          "Main Camera": "64MP + 2MP",
+          "Processor": "Dimensity 900"
+        }
+      },
+      {
+        "name": "T2x 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Affordable 5G with Dimensity 6020, 50MP main camera, and 5000mAh battery.",
+        "specifications": {
+          "RAM": "4GB/6GB/8GB",
+          "Storage": "128GB",
+          "Display": "6.58\" IPS LCD, FHD+, 90Hz",
+          "Battery": "5000mAh, 18W charging",
+          "Main Camera": "50MP + 2MP",
+          "Processor": "Dimensity 6020"
+        }
+      },
+      {
+        "name": "Y56 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Entry-level 5G with Dimensity 700, 50MP main camera, and 5000mAh battery.",
+        "specifications": {
+          "RAM": "4GB/8GB",
+          "Storage": "128GB",
+          "Display": "6.58\" IPS LCD, HD+, 60Hz",
+          "Battery": "5000mAh, 18W charging",
+          "Main Camera": "50MP + 2MP",
+          "Processor": "Dimensity 700"
+        }
+      }
+    ]
+  },
+  "Realme": {
+    "name": "Realme",
+    "country": "China",
+    "models": [
+      {
+        "name": "GT 5 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship with Snapdragon 8 Gen 3, 50MP main camera with periscope zoom, and 100W charging.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.78\" AMOLED, 1.5K resolution, 144Hz",
+          "Battery": "5400mAh, 100W charging",
+          "Main Camera": "50MP + 50MP + 8MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "12 Pro",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Premium mid-ranger with Snapdragon 8 Gen 2, 50MP main camera, and 120W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.7\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "11 Pro+ 5G",
+        "launch_year": 2023,
+        "price_range": "Upper Mid-range",
+        "description": "Performance-focused with Dimensity 8200, 100W charging, and 120Hz curved display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.7\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 100W charging",
+          "Main Camera": "108MP + 8MP + 2MP",
+          "Processor": "Dimensity 8200"
+        }
+      },
+      {
+        "name": "11 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Value flagship with Dimensity 7050, 108MP main camera, and 67W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.72\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "108MP + 2MP",
+          "Processor": "Dimensity 7050"
+        }
+      },
+      {
+        "name": "Narzo 60x 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Budget 5G phone with Dimensity 6100+, 50MP main camera, and 33W charging.",
+        "specifications": {
+          "RAM": "4GB/6GB",
+          "Storage": "128GB",
+          "Display": "6.72\" IPS LCD, FHD+, 90Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "50MP + 2MP",
+          "Processor": "Dimensity 6100+"
+        }
+      },
+      {
+        "name": "11x 5G",
+        "launch_year": 2023,
+        "price_range": "Budget",
+        "description": "Affordable 5G device with Dimensity 6100+, 64MP main camera, and fast charging.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB",
+          "Display": "6.72\" IPS LCD, FHD+, 120Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "64MP + 2MP",
+          "Processor": "Dimensity 6100+"
+        }
+      },
+      {
+        "name": "GT Neo 5",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Performance flagship with Snapdragon 8+ Gen 1, 240W charging, and RGB lighting.",
+        "specifications": {
+          "RAM": "8GB/12GB/16GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.74\" AMOLED, 1.5K resolution, 144Hz",
+          "Battery": "4600mAh, 240W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Snapdragon 8+ Gen 1"
+        }
+      },
+      {
+        "name": "10 Pro 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with Snapdragon 695, 108MP main camera, and 67W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.72\" IPS LCD, FHD+, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "108MP + 8MP + 2MP",
+          "Processor": "Snapdragon 695"
+        }
+      }
+    ]
+  },
+  "OnePlus": {
+    "name": "OnePlus",
+    "country": "China",
+    "models": [
+      {
+        "name": "OnePlus 12",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship featuring Snapdragon 8 Gen 3, 50MP Sony LYT-808 main camera, 100W SUPERVOOC charging, and 2K LTPO AMOLED display.",
+        "specifications": {
+          "RAM": "12GB/16GB/24GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.82\" LTPO AMOLED, 2K resolution, 120Hz",
+          "Battery": "5400mAh, 100W charging",
+          "Main Camera": "50MP + 48MP + 64MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "OnePlus 12R",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Performance-focused device with Snapdragon 8 Gen 2, 100W charging, 5500mAh battery, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB/16GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.78\" LTPO AMOLED, FHD+, 120Hz",
+          "Battery": "5500mAh, 100W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "OnePlus Nord CE 4",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with Snapdragon 7 Gen 3, 50MP main camera, 100W charging, and 120Hz AMOLED display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.7\" AMOLED, FHD+, 120Hz",
+          "Battery": "5500mAh, 100W charging",
+          "Main Camera": "50MP + 8MP",
+          "Processor": "Snapdragon 7 Gen 3"
+        }
+      },
+      {
+        "name": "OnePlus 11 5G",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Premium device with Snapdragon 8 Gen 2, Hasselblad cameras, 100W charging, and 120Hz LTPO display.",
+        "specifications": {
+          "RAM": "8GB/16GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.7\" LTPO AMOLED, QHD+, 120Hz",
+          "Battery": "5000mAh, 100W charging",
+          "Main Camera": "50MP + 48MP + 32MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      }
+    ]
+  },
+  "Tecno": {
+    "name": "Tecno",
+    "country": "China",
+    "models": [
+      {
+        "name": "Phantom V Flip",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Foldable smartphone with 6.9\" AMOLED display, MediaTek Dimensity 8050, 64MP main camera, and 4000mAh battery.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.9\" FHD+ AMOLED, 120Hz",
+          "Battery": "4000mAh, 45W charging",
+          "Main Camera": "64MP + 13MP",
+          "Processor": "Dimensity 8050"
+        }
+      },
+      {
+        "name": "Pova 6 Pro",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Gaming-focused with Dimensity 6080, 108MP camera, 6000mAh battery, and 70W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.78\" AMOLED, FHD+, 120Hz",
+          "Battery": "6000mAh, 70W charging",
+          "Main Camera": "108MP + 2MP + 2MP",
+          "Processor": "Dimensity 6080"
+        }
+      },
+      {
+        "name": "Spark 20 Pro",
+        "launch_year": 2024,
+        "price_range": "Budget",
+        "description": "Value device with Helio G99, 108MP main camera, 5000mAh battery, and 33W charging.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.78\" IPS LCD, FHD+, 90Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "108MP + 2MP",
+          "Processor": "Helio G99"
+        }
+      }
+    ]
+  },
+  "POCO": {
+    "name": "POCO",
+    "country": "China",
+    "models": [
+      {
+        "name": "POCO X6 Pro",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Performance-focused with Dimensity 8300-Ultra, 64MP camera, 67W charging, and 120Hz display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.67\" AMOLED, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "64MP + 8MP + 2MP",
+          "Processor": "Dimensity 8300-Ultra"
+        }
+      },
+      {
+        "name": "POCO F6",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Flagship killer with Snapdragon 8 Gen 2, 50MP main camera, 67W charging, and 120Hz AMOLED.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.67\" AMOLED, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      },
+      {
+        "name": "POCO M7 Pro",
+        "launch_year": 2024,
+        "price_range": "Budget",
+        "description": "Budget gaming phone with Dimensity 7200, 64MP main camera, 5000mAh battery, and 33W charging.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.67\" LCD, 120Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "64MP + 8MP + 2MP",
+          "Processor": "Dimensity 7200"
+        }
+      },
+      {
+        "name": "POCO F5",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Value flagship with Snapdragon 7+ Gen 2, 64MP camera, 67W charging, and 120Hz display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "64MP + 8MP + 2MP",
+          "Processor": "Snapdragon 7+ Gen 2"
+        }
+      },
+      {
+        "name": "POCO X5 Pro",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with Snapdragon 778G, 108MP camera, 67W charging, and 120Hz AMOLED.",
+        "specifications": {
+          "RAM": "6GB/8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 67W charging",
+          "Main Camera": "108MP + 8MP + 2MP",
+          "Processor": "Snapdragon 778G"
+        }
+      }
+    ]
+  },
+  "Motorola": {
+    "name": "Motorola",
+    "country": "United States",
+    "models": [
+      {
+        "name": "Edge 50 Ultra",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship with Snapdragon 8 Gen 3, 200MP main camera, 125W charging, and 165Hz pOLED display.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "512GB/1TB",
+          "Display": "6.7\" pOLED, 165Hz",
+          "Battery": "4500mAh, 125W charging",
+          "Main Camera": "200MP + 50MP + 12MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Razr 50 Ultra",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Foldable flagship with Snapdragon 8 Gen 3, improved hinge, larger cover display, and 33W charging.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "512GB",
+          "Display": "6.9\" pOLED Foldable + 3.6\" Cover",
+          "Battery": "4000mAh, 33W charging",
+          "Main Camera": "50MP + 12MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Edge 50 Pro",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Premium mid-ranger with Snapdragon 7 Gen 3, 50MP main camera, 125W charging, and 144Hz pOLED.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.7\" pOLED, 144Hz",
+          "Battery": "4800mAh, 125W charging",
+          "Main Camera": "50MP + 13MP + 8MP",
+          "Processor": "Snapdragon 7 Gen 3"
+        }
+      },
+      {
+        "name": "Edge 40 Neo",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with Dimensity 7030, 50MP main camera, 68W charging, and 144Hz pOLED.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.55\" pOLED, FHD+, 144Hz",
+          "Battery": "5000mAh, 68W charging",
+          "Main Camera": "50MP + 13MP",
+          "Processor": "Dimensity 7030"
+        }
+      },
+      {
+        "name": "G84 5G",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Value device with Snapdragon 695, 50MP main camera, 5000mAh battery, and 33W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.55\" pOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 33W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Snapdragon 695"
+        }
+      }
+    ]
+  },
+  "Infinix": {
+    "name": "Infinix",
+    "country": "China",
+    "models": [
+      {
+        "name": "Zero 50 Ultra",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Premium device with Dimensity 9200+, 108MP camera, 180W charging, and 144Hz curved AMOLED.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.8\" AMOLED, FHD+, 144Hz",
+          "Battery": "4600mAh, 180W charging",
+          "Main Camera": "108MP + 32MP + 12MP",
+          "Processor": "Dimensity 9200+"
+        }
+      },
+      {
+        "name": "GT 30 Pro",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Gaming-focused with Dimensity 8300, 108MP camera, 120W charging, and 144Hz display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.78\" AMOLED, FHD+, 144Hz",
+          "Battery": "5000mAh, 120W charging",
+          "Main Camera": "108MP + 8MP + 2MP",
+          "Processor": "Dimensity 8300"
+        }
+      },
+      {
+        "name": "Note 40 Pro",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Value device with Helio G99, 108MP camera, 45W charging, and 120Hz AMOLED.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 45W charging",
+          "Main Camera": "108MP + 2MP + 2MP",
+          "Processor": "Helio G99"
+        }
+      }
+    ]
+  },
+  "Nothing": {
+    "name": "Nothing",
+    "country": "United Kingdom",
+    "models": [
+      {
+        "name": "Phone (2a)",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Value flagship with Dimensity 7200, Glyph interface, 50MP dual camera, and 120Hz OLED.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.7\" OLED, FHD+, 120Hz",
+          "Battery": "5000mAh, 45W charging",
+          "Main Camera": "50MP + 50MP",
+          "Processor": "Dimensity 7200"
+        }
+      },
+      {
+        "name": "Phone (2)",
+        "launch_year": 2023,
+        "price_range": "Upper Mid-range",
+        "description": "Premium device with Snapdragon 8+ Gen 1, advanced Glyph interface, 50MP cameras, and 120Hz LTPO display.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB/512GB",
+          "Display": "6.7\" LTPO OLED, FHD+, 120Hz",
+          "Battery": "4700mAh, 45W charging",
+          "Main Camera": "50MP + 50MP",
+          "Processor": "Snapdragon 8+ Gen 1"
+        }
+      },
+      {
+        "name": "Phone (1)",
+        "launch_year": 2022,
+        "price_range": "Mid-range",
+        "description": "First Nothing phone with Snapdragon 778G+, Glyph interface, 50MP dual camera, and 120Hz OLED.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.55\" OLED, FHD+, 120Hz",
+          "Battery": "4500mAh, 33W charging",
+          "Main Camera": "50MP + 50MP",
+          "Processor": "Snapdragon 778G+"
+        }
+      }
+    ]
+  },
+  "iQOO": {
+    "name": "iQOO",
+    "country": "China",
+    "models": [
+      {
+        "name": "iQOO 12 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship with Snapdragon 8 Gen 3, 50MP V3 camera system, 144Hz LTPO display, and 120W FlashCharge.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.78\" LTPO AMOLED, 2K resolution, 144Hz",
+          "Battery": "5100mAh, 120W charging",
+          "Main Camera": "50MP + 50MP + 64MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "iQOO Neo 9 Pro",
+        "launch_year": 2024,
+        "price_range": "Upper Mid-range",
+        "description": "Performance-focused with Dimensity 9200+, 50MP main camera, and 120W charging.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" AMOLED, FHD+, 144Hz",
+          "Battery": "5160mAh, 120W charging",
+          "Main Camera": "50MP + 8MP",
+          "Processor": "Dimensity 9200+"
+        }
+      }
+    ]
+  },
+  "ASUS": {
+    "name": "ASUS",
+    "country": "Taiwan",
+    "models": [
+      {
+        "name": "ROG Phone 8 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Gaming flagship with Snapdragon 8 Gen 3, AirTrigger 6, 165Hz AMOLED display, and advanced cooling system.",
+        "specifications": {
+          "RAM": "16GB/24GB",
+          "Storage": "512GB/1TB",
+          "Display": "6.78\" AMOLED, FHD+, 165Hz",
+          "Battery": "5500mAh, 65W charging",
+          "Main Camera": "50MP + 13MP + 32MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Zenfone 10",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Compact flagship with Snapdragon 8 Gen 2, 6-axis gimbal stabilization, and 144Hz display.",
+        "specifications": {
+          "RAM": "8GB/16GB",
+          "Storage": "128GB/256GB/512GB",
+          "Display": "5.9\" AMOLED, FHD+, 144Hz",
+          "Battery": "4300mAh, 30W charging",
+          "Main Camera": "50MP + 13MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      }
+    ]
+  },
+  "Google": {
+    "name": "Google",
+    "country": "United States",
+    "models": [
+      {
+        "name": "Pixel 8 Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "AI-focused flagship with Google Tensor G3, advanced computational photography, and premium design.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "128GB/256GB/512GB/1TB",
+          "Display": "6.7\" LTPO OLED, QHD+, 120Hz",
+          "Battery": "5050mAh, 30W charging",
+          "Main Camera": "50MP + 48MP + 48MP",
+          "Processor": "Google Tensor G3"
+        }
+      },
+      {
+        "name": "Pixel 8",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Compact flagship with Tensor G3, enhanced AI features, and improved camera capabilities.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB/256GB",
+          "Display": "6.2\" OLED, FHD+, 120Hz",
+          "Battery": "4575mAh, 27W charging",
+          "Main Camera": "50MP + 12MP",
+          "Processor": "Google Tensor G3"
+        }
+      },
+      {
+        "name": "Pixel 7a",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Value device with Tensor G2, flagship-grade camera features, and wireless charging.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "128GB",
+          "Display": "6.1\" OLED, FHD+, 90Hz",
+          "Battery": "4385mAh, 18W charging",
+          "Main Camera": "64MP + 13MP",
+          "Processor": "Google Tensor G2"
+        }
+      }
+    ]
+  },
+  "Honor": {
+    "name": "Honor",
+    "country": "China",
+    "models": [
+      {
+        "name": "Magic 6 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Flagship with Snapdragon 8 Gen 3, 180W charging, 1.5K LTPO display, and advanced camera system.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.8\" LTPO OLED, 1.5K resolution, 120Hz",
+          "Battery": "5600mAh, 180W charging",
+          "Main Camera": "50MP + 50MP + 180MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "Magic 6",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "High-end device with Snapdragon 8 Gen 3, 66W charging, and versatile camera setup.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" LTPO OLED, 1.5K resolution, 120Hz",
+          "Battery": "5450mAh, 66W charging",
+          "Main Camera": "50MP + 50MP + 32MP",
+          "Processor": "Snapdragon 8 Gen 3"
+        }
+      },
+      {
+        "name": "X9a",
+        "launch_year": 2024,
+        "price_range": "Mid-range",
+        "description": "Mid-range phone with curved AMOLED display, Dimensity 6080, and 5800mAh battery.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB",
+          "Display": "6.67\" AMOLED, FHD+, 120Hz",
+          "Battery": "5800mAh, 35W charging",
+          "Main Camera": "108MP + 5MP + 2MP",
+          "Processor": "Dimensity 6080"
+        }
+      },
+      {
+        "name": "90 Lite",
+        "launch_year": 2024,
+        "price_range": "Budget",
+        "description": "Budget device with Snapdragon 6 Gen 1, 108MP camera, and 90Hz display.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.7\" LCD, FHD+, 90Hz",
+          "Battery": "4500mAh, 35W charging",
+          "Main Camera": "108MP + 5MP + 2MP",
+          "Processor": "Snapdragon 6 Gen 1"
+        }
+      },
+      {
+        "name": "Magic V2",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Ultra-thin foldable with Snapdragon 8 Gen 2, dual 50MP cameras, and large battery.",
+        "specifications": {
+          "RAM": "16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "7.92\" Foldable OLED + 6.43\" Cover, 120Hz",
+          "Battery": "5000mAh, 66W charging",
+          "Main Camera": "50MP + 50MP + 20MP",
+          "Processor": "Snapdragon 8 Gen 2"
+        }
+      }
+    ]
+  },
+  "Huawei": {
+    "name": "Huawei",
+    "country": "China",
+    "models": [
+      {
+        "name": "P70 Pro",
+        "launch_year": 2024,
+        "price_range": "Premium",
+        "description": "Latest flagship with Kirin 9000S, variable aperture camera system, and XMAGE imaging technology. Features Harmony OS and advanced AI capabilities.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "256GB/512GB/1TB",
+          "Display": "6.76\" LTPO OLED, 1.5K resolution, 120Hz",
+          "Battery": "5050mAh, 100W charging",
+          "Main Camera": "50MP + 48MP + 48MP",
+          "Processor": "Kirin 9000S"
+        }
+      },
+      {
+        "name": "Mate 60 Pro+",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "High-end flagship with Kunlun Glass, satellite communication, and advanced camera system. Features variable aperture and IP68 rating.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "512GB/1TB",
+          "Display": "6.82\" LTPO OLED, 1.5K resolution, 120Hz",
+          "Battery": "5000mAh, 88W charging",
+          "Main Camera": "48MP + 48MP + 40MP",
+          "Processor": "Kirin 9000S"
+        }
+      },
+      {
+        "name": "Mate 60 Pro",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Flagship device with satellite capabilities, variable aperture main camera, and Harmony OS. Features Kunlun Glass protection.",
+        "specifications": {
+          "RAM": "12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.82\" LTPO OLED, 1.5K resolution, 120Hz",
+          "Battery": "5000mAh, 88W charging",
+          "Main Camera": "48MP + 48MP + 40MP",
+          "Processor": "Kirin 9000S"
+        }
+      },
+      {
+        "name": "Mate X5",
+        "launch_year": 2023,
+        "price_range": "Premium",
+        "description": "Foldable flagship with large flexible display, Kirin 9000S, and advanced camera system. Features satellite communication.",
+        "specifications": {
+          "RAM": "12GB/16GB",
+          "Storage": "512GB/1TB",
+          "Display": "7.85\" Foldable OLED + 6.4\" Cover, 120Hz",
+          "Battery": "5060mAh, 66W charging",
+          "Main Camera": "50MP + 12MP + 8MP",
+          "Processor": "Kirin 9000S"
+        }
+      },
+      {
+        "name": "nova 12 Pro",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Mid-range device with curved display, dual front cameras, and stylish design. Features XMAGE imaging system.",
+        "specifications": {
+          "RAM": "8GB/12GB",
+          "Storage": "256GB/512GB",
+          "Display": "6.78\" OLED, FHD+, 120Hz",
+          "Battery": "4500mAh, 100W charging",
+          "Main Camera": "50MP + 8MP + 2MP",
+          "Processor": "Kirin 8000"
+        }
+      },
+      {
+        "name": "nova 12",
+        "launch_year": 2023,
+        "price_range": "Mid-range",
+        "description": "Entry-level nova series with sleek design, capable cameras, and fast charging support.",
+        "specifications": {
+          "RAM": "8GB",
+          "Storage": "256GB",
+          "Display": "6.7\" OLED, FHD+, 90Hz",
+          "Battery": "4500mAh, 66W charging",
+          "Main Camera": "50MP + 8MP",
+          "Processor": "Kirin 7000"
+        }
+      }
+    ]
+  }
+}
